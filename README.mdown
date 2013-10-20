@@ -1,0 +1,28 @@
+# Game Stats
+
+This gem manages all the stats related to games:
+CTR calculations for game thumbs (clicks/impressions) and Similar Games
+
+## Requirements
+
+database, Game model
+
+## Setup
+
+1. Add game stats to your Gemfile:
+
+``` ruby
+gem 'game_stats', :git => 'git@github.com:playedonline/game_stats.git'
+```
+
+and run:
+
+```bash
+$ bundle install
+```
+
+1. in order to create the game_stats table, run:
+
+```bash
+$ bundle exec rake game_stats:install:migrations
+```

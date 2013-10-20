@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["chen@funtomic.com"]
   s.homepage    = ""
   s.summary     = "game_stats gem"
-  s.description = "This gem handles all the game stats related operations (ctr, similar games, order etc) of our web apps"
+  s.description = "This gem handles game stats related operations (ctr, similar games, homepage order etc) of our web apps"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 

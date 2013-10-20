@@ -26,12 +26,14 @@ $ bundle install
 ```bash
 $ bundle exec rake game_stats:install:migrations
 ```
+note that it created a migration file in your `db/migrate` folder - remember to add it to git!
 
-and then run:
+Then run:
 
 ```bash
 $ bundle exec rake db:migrate
 ```
+to run the migration.
 
 3. GameStats gem allows you to to set the following configuration values:
 - auto_populate_similar_games: Determines if we auto populate stats for similar games when adding a new game (default = true)

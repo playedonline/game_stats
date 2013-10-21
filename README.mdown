@@ -13,7 +13,7 @@ Your app should contain a `Game` model
 ``` ruby
 gem 'game_stats', :git => 'git@github.com:playedonline/game_stats.git'
 ```
-<br>then run:
+<br>then run:<br>
 ```bash
 $ bundle install
 ```
@@ -21,12 +21,12 @@ $ bundle install
 ```bash
 $ bundle exec rake game_stats:install:migrations
 ```
-note that it creates a migration file in your `db/migrate` folder - **remember to add it to git!**
-Then run:
+<br>note that it creates a migration file in your `db/migrate` folder - **remember to add it to git!**
+<br>Then run:
 ```bash
 $ bundle exec rake db:migrate
 ```
-to run the migration.
+<br>to run the migration.
 - if you already have existing games, you might need to write a migration to create stats for them, for example:
 ```ruby
 class InitializeGameStatsForExistingGames < ActiveRecord::Migration

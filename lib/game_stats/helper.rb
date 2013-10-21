@@ -13,5 +13,10 @@ module GameStats
       end
 
     end
+
+    def get_similar_games(game_id, amount, games_cache_key = nil)
+      GameStat.get_similar_games game_id, amount, games_cache_key
+    end
+
   end
 end

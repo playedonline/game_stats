@@ -86,10 +86,32 @@ GameStats::add_homepage_stats_as_game_zero = true
 ## Usage
 
 ### report impressions
+From any javascript file, use:
 
-### report clicks
+```javascript
+GameStats.record_impressions(game_id, similar_game_ids);
+```
+
+
+### report click
+
+From any javascript file, use:
+```javascript
+GameStats.record_click(game_id, similar_game_id);
+```
+
+Then in the relevant controller (usually game#show action) call:
+```ruby
+collect_click_data
+```
 
 ### use the similar games data
+From any controller, you can call the method `get_similar_games`:
+```ruby
+def get_similar_games(game_id, amount, games_cache_key = nil)
+...
+```
+games_cache_key is a key to expire the cache in case there was a change in games data (i.e game added, became invisible etc)
 
 
 ## Deploy

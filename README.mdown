@@ -13,7 +13,7 @@ Your app should contain a `Game` model
 ``` ruby
 gem 'game_stats', :git => 'git@github.com:playedonline/game_stats.git'
 ```
-then run:
+  then run:
 ```bash
 $ bundle install
 ```

@@ -35,7 +35,7 @@ $ bundle exec rake db:migrate
 ```
 to run the migration.
 
- - if you already have existing games, you might need to write a migration to create stats for them, for example:
+-> if you already have existing games, you might need to write a migration to create stats for them, for example:
 
 ```ruby
 class InitializeGameStatsForExistingGames < ActiveRecord::Migration

@@ -34,7 +34,9 @@ class GameStat < ActiveRecord::Base
 
   def self.get_similar_games(game_id, amount, games_cache_key)
     Rails.cache.fetch(['similar_games', game_id, amount, games_cache_key],:expires_in => 10.minutes) do
-      GameStat.select(:similar_game_id).joins(:similar_game).where({:game_id => game_id, :games => {:visible => true}}).order('clicks / impressions DESC').limit(amount).to_a
+      GameStat.includes(:similar_game).joins(:similar_game).where({:game_id => game_id, :games => {:visible => true}}).order('clicks / impressions DESC').limit(amount).map do |game_stat|
+        game_stat.similar_game
+      end
     end
   end
 

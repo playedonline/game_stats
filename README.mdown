@@ -1,21 +1,21 @@
 # Game Stats
 
 This gem manages all the stats related to games:
-CTR calculations for game thumbs (clicks/impressions) and Similar Games
+CTR calculations for game thumbs (clicks/impressions) - for homepage ordering and Similar Games stats
 
 ## Requirements
 
-database, Game model
+a `Game` model
 
 ## Setup
 
-1. Add game stats to your Gemfile:
+1. Add game stats gem to your Gemfile:
 
 ``` ruby
 gem 'game_stats', :git => 'git@github.com:playedonline/game_stats.git'
 ```
 
-and run:
+then run:
 
 ```bash
 $ bundle install
@@ -26,7 +26,7 @@ $ bundle install
 ```bash
 $ bundle exec rake game_stats:install:migrations
 ```
-note that it created a migration file in your `db/migrate` folder - remember to add it to git!
+note that it creates a migration file in your `db/migrate` folder - **remember to add it to git!**
 
 Then run:
 
@@ -35,10 +35,35 @@ $ bundle exec rake db:migrate
 ```
 to run the migration.
 
+- if you already have existing games, you might need to write a migration to create stats for them, for example:
+
+```ruby
+class InitializeGameStatsForExistingGames < ActiveRecord::Migration
+  def change
+
+    execute 'DELETE FROM game_stats'
+
+    execute 'INSERT INTO game_stats(game_id, similar_game_id, impressions, clicks)
+            SELECT 0, games.id, 0, 0
+            FROM games'
+
+    Game.all.each do |game|
+      execute "INSERT INTO game_stats(game_id, similar_game_id, impressions, clicks)
+            SELECT #{game.id}, games.id, 0, 0
+            FROM games
+            WHERE games.id <> #{game.id}"
+    end
+
+  end
+end
+```
+
 3. GameStats gem allows you to to set the following configuration values:
-- auto_populate_similar_games: Determines if we auto populate stats for similar games when adding a new game (default = true)
-- add_homepage_stats_as_game_zero: Determines if we also add an entry for homepage with every new game as similar game, for homepage stats (default = false)
-in order to set them, add an initializer (under `config/initializers`) - you can name it `game_stats.rb` and in it add the values you want:
+
+- `auto_populate_similar_games`: Determines if we auto populate stats for similar games when adding a new game (default = true)
+- `add_homepage_stats_as_game_zero`: Determines if we add an entry for homepage with every new game as similar game, for homepage stats (default = false)
+
+in order to change the configuration values, add an initializer (under `config/initializers`) - you can name it `game_stats.rb` and in it add the values you want:
 
 ``` ruby
 GameStats::auto_populate_similar_games = false
@@ -50,3 +75,12 @@ GameStats::add_homepage_stats_as_game_zero = true
 ``` ruby
   mount GameStats::Engine => "/game_stats"
 ```
+
+5.
+
+
+
+
+
+add migration for existing games
+deploy - remember to migrate

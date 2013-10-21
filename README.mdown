@@ -9,7 +9,7 @@ Your app should contain a `Game` model
 
 ## Setup
 
-1. Add game stats gem to your Gemfile:
+* Add game stats gem to your Gemfile:
 
 ``` ruby
 gem 'game_stats', :git => 'git@github.com:playedonline/game_stats.git'
@@ -21,7 +21,7 @@ then run:
 $ bundle install
 ```
 
-2. In order to create the game_stats table, run:
+* In order to create the game_stats table, run:
 
 ```bash
 $ bundle exec rake game_stats:install:migrations
@@ -58,7 +58,7 @@ class InitializeGameStatsForExistingGames < ActiveRecord::Migration
 end
 ```
 
-3. GameStats gem allows you to to set the following configuration values:
+* GameStats gem allows you to to set the following configuration values:
  - `auto_populate_similar_games`: Determines if we auto populate stats for similar games when adding a new game (default = true)
  - `add_homepage_stats_as_game_zero`: Determines if we add an entry for homepage with every new game as similar game, for homepage stats (default = false)
 in order to change the configuration values, add an initializer (under `config/initializers`) - you can name it `game_stats.rb` and in it add the values you want:
@@ -68,13 +68,13 @@ GameStats::auto_populate_similar_games = false
 GameStats::add_homepage_stats_as_game_zero = true
 ```
 
-4. Add to `routes.rb`:
+* Add to `routes.rb`:
 
 ``` ruby
   mount GameStats::Engine => "/game_stats"
 ```
 
-5. Add to `application.js`:
+* Add to `application.js`:
 
 ```javascript
 //= require game_stats/game_stats_client_api

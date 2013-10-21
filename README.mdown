@@ -10,32 +10,24 @@ Your app should contain a `Game` model
 ## Setup
 
 1. Add game stats gem to your Gemfile:
-
 ``` ruby
 gem 'game_stats', :git => 'git@github.com:playedonline/game_stats.git'
 ```
-
 then run:
-
 ```bash
 $ bundle install
 ```
 2. In order to create the game_stats table, run:
-
 ```bash
 $ bundle exec rake game_stats:install:migrations
 ```
 note that it creates a migration file in your `db/migrate` folder - **remember to add it to git!**
-
 Then run:
-
 ```bash
 $ bundle exec rake db:migrate
 ```
 to run the migration.
-
 - if you already have existing games, you might need to write a migration to create stats for them, for example:
-
 ```ruby
 class InitializeGameStatsForExistingGames < ActiveRecord::Migration
   def change
@@ -57,7 +49,6 @@ class InitializeGameStatsForExistingGames < ActiveRecord::Migration
 end
 ```
 3. GameStats gem allows you to to set the following configuration values:
-
 - `auto_populate_similar_games`: Determines if we auto populate stats for similar games when adding a new game (default = true)
 - `add_homepage_stats_as_game_zero`: Determines if we add an entry for homepage with every new game as similar game, for homepage stats (default = false)
 

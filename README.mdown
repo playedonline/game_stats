@@ -49,8 +49,8 @@ class InitializeGameStatsForExistingGames < ActiveRecord::Migration
 end
 ```
 3. GameStats gem allows you to to set the following configuration values:
-- `auto_populate_similar_games`: Determines if we auto populate stats for similar games when adding a new game (default = true)
-- `add_homepage_stats_as_game_zero`: Determines if we add an entry for homepage with every new game as similar game, for homepage stats (default = false)
+ - `auto_populate_similar_games`: Determines if we auto populate stats for similar games when adding a new game (default = true)
+ - `add_homepage_stats_as_game_zero`: Determines if we add an entry for homepage with every new game as similar game, for homepage stats (default = false)
 
 in order to change the configuration values, add an initializer (under `config/initializers`) - you can name it `game_stats.rb` and in it add the values you want:
 

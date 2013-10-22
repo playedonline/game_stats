@@ -14,12 +14,14 @@ module GameStats
   # Name of the Game class to use (defaults to 'Game')
   mattr_accessor :game_class_name
 
+  class InvalidConfiguration < StandardError; end
+
   class Engine < ::Rails::Engine
     isolate_namespace GameStats
 
     initializer "game_stats" do |app|
 
-      raise InvalidConfiguration.new('minutes_to_expire_similar_games_cache must be > 0') if GameStats::minutes_to_expire_similar_games_cache == 0
+      raise GameStats::InvalidConfiguration.new('minutes_to_expire_similar_games_cache must be > 0') if GameStats::minutes_to_expire_similar_games_cache == 0
 
       GameStats::game_class_name ||= 'Game'
       GameStats::minutes_to_expire_similar_games_cache ||= 5

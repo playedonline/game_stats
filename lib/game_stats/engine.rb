@@ -19,7 +19,7 @@ module GameStats
 
     initializer "game_stats" do |app|
 
-      raise GameStats::InvalidConfiguration.new('minutes_to_expire_similar_games_cache must be > 0') if GameStats::minutes_to_expire_similar_games_cache == 0
+      raise InvalidConfiguration.new('minutes_to_expire_similar_games_cache must be > 0') if GameStats::minutes_to_expire_similar_games_cache == 0
 
       GameStats::game_class_name ||= 'Game'
       GameStats::minutes_to_expire_similar_games_cache ||= 5

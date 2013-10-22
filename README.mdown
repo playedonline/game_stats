@@ -49,7 +49,7 @@ class InitializeGameStatsForExistingGames < ActiveRecord::Migration
 
     Game.all.each do |game|
       execute "INSERT INTO game_stats(game_id, similar_game_id, impressions, clicks)
-            SELECT #{game.id}, games.id, 0, 0
+            SELECT #{game.id}, games.id, 2, 2
             FROM games
             WHERE games.id <> #{game.id}"
     end

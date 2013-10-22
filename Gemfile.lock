@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    game_stats (1.0.5)
+    game_stats (1.0.6)
       rails (~> 4.0.0)
 
 GEM
